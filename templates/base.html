@@ -1,0 +1,30 @@
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+    {{ ckeditor.load() }}
+    {{ super() }}
+{% endblock %}
+
+{% block title %}
+    Flog application
+{% endblock %}
+
+{% block navbar %}
+    {% include '_navbar.html' %}
+{% endblock %}
+
+{% block content %}
+    {% block sub_content %}
+    {% endblock %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class='text-center'>
+                    <div class='alert alert-{{category}}'> {{ message }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
+
